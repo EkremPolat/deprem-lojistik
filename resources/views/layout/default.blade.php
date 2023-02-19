@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
 
     {{-- Title Section --}}
-    <title>Deprem Yardım</title>
+    <title>{{ env('APP_NAME')  }}</title>
 
     {{-- Meta Data --}}
     <meta name="description" content="Deprem Yardım"/>
@@ -37,7 +37,7 @@
     <script src="js/repeater.js"></script>
     <script src="js/forms.js"></script>
 
-    <link href="/css/web.css" rel="stylesheet">
+    <link href="/css/web.css?v=1.1" rel="stylesheet">
 
     {{-- Includable CSS --}}
     @yield('styles')
@@ -114,17 +114,17 @@ $(document).ready(function () {
             },
             { data: 'id', name: 'id', title: 'Durum', searchable: false, "render": function (data, type, row) {
                     if(row.is_done){
-                        return '<span class="btn btn-sm btn-success">Tamamlandı</span>'
+                        return '<span class="btn btn-block btn-sm btn-light-success">Tamamlandı</span>'
                     }else if(row.is_arrived){
-                        return '<span class="btn btn-sm btn-warning">Vardı Bekliyor</span>'
+                        return '<span class="btn btn-block btn-sm btn-light-warning">Vardı Bekliyor</span>'
                     }else{
-                        return '<span class="btn btn-sm btn-primary">Yolda</span>'
+                        return '<span class="btn btn-block btn-sm btn-light-primary">Yolda</span>'
                     }
                 }
             },
 
             { data: 'id', name: 'id', title: 'İşlem', searchable: false, "render": function (data, type, row) {
-                    return '<button class="btn btn-dark detail-modal" data-id="'+row.id+'">Detayları Gör</button>&nbsp;<button class="btn btn-info update-modal" data-id="'+row.id+'">Güncelle</button>'
+                    return '<button class="btn btn-dark detail-modal btn-sm" data-id="'+row.id+'">Detayları Gör</button>&nbsp;<button class="btn btn-light-info update-modal btn-sm" data-id="'+row.id+'">Güncelle</button>'
                 }
             },
         ],

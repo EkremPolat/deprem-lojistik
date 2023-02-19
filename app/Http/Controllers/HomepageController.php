@@ -57,7 +57,7 @@ class HomepageController extends Controller
 
         if(isset($parameters['category_id'])){
             $vehs = VehicleContent::where('category_id', $parameters['category_id'])->pluck('vehicle_id')->toArray();
-            $vehicles->whereIn('vehicle_id', $vehs);
+            $vehicles->whereIn('id', $vehs);
         }
 
         if(isset($parameters['status'])){
@@ -99,7 +99,7 @@ class HomepageController extends Controller
             'contact_name' => 'required',
             'contact_phone' => 'required',
             'from' => 'required',
-            'to' => 'required',
+            'to' => 'nullable',
             'contents.*.category_id' => 'required',
             'contents.*.product' => 'required',
             'contents.*.unit' => 'required',
@@ -142,7 +142,7 @@ class HomepageController extends Controller
 
                 $ara = Product::where('category_id', $content['category_id'])->where('name', $content['product'])->first();
                 if($ara){
-                    $product = Product::find($ara);
+                    $product = Product::find($ara->id);
                 }else{
                     $product = new Product();
                     $product->name = $content['product'];
